@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
-  const { city } = req.query; 
+  const { city } = req.query;
+  const apiKey = process.env.OPENWEATHER_API_KEY;
 
-  const fullUrl = new URL(req.url, `https://${req.headers.host}`);
-  const cityName = city || fullUrl.searchParams.get('city');
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=id`;
 
   try {
     const response = await fetch(url);
